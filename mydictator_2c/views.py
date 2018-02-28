@@ -25,12 +25,14 @@ class Offer(Page):
     form_model = models.Group
     form_fields = ['kept','Ikeep']
 
+
     def vars_for_template(self):
 
         return {'allocation2c': self.player.participant.vars['randnumber2c'] * 10,
-                'income1': self.participant.vars['income1'],
-                'catches1': self.participant.vars['catches1'],
-        }
+                #'income1': self.participant.vars['income1'],
+                #'catches1': self.participant.vars['catches1'],
+
+                }
 
     def is_displayed(self):
         return self.player.id_in_group == 1

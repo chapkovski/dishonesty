@@ -19,17 +19,14 @@ class Constants(BaseConstants):
     endowment = 100
 
 class Subsession(BaseSubsession):
-    randnumber = models.FloatField()
-
     def is_displayed(self):
-        return self.player.id_in_group == 1
-
-    def before_session_starts(self):
-        for player in self.get_players():
-            randnumber2c = random.randint(1, 10)
-            player.participant.vars['randnumber2c']=randnumber2c
+        return self.participant.vars['color'] == 'blue'
 
 
+    def creating_session(self):
+        for p in self.get_players():
+            p.randnumber = random.randint(1, 10)
+            p.participant.vars['randnumber2c'] = p.randnumber
 
 
 class Group(BaseGroup):
@@ -37,4 +34,4 @@ class Group(BaseGroup):
 
 
 class Player(BasePlayer):
-    pass
+    randnumber = models.FloatField()

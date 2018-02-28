@@ -2,38 +2,30 @@
 {% load staticfiles otree_tags %}
 
 {% block title %}
-    Results
+    Round History
 {% endblock %}
 
 {% block content %}
-    <table class="table">
-        <tr>
-            <td>Round</td>
-            <td>{{ subsession.round_number }}</td>
-        </tr>
-        <tr>
-            <td>Catches</td>
-            <td>{{ player.catches }}</td>
-        </tr>
-        <tr>
-            <td>Clicks</td>
-            <td>{{ player.clicks }}</td>
-        </tr>
-        <tr>
-            <td>Score</td>
-            <td>{{ player.score }}</td>
-        </tr>
-        <tr>
-            <td>Expense</td>
-            <td>{{ player.expense }}</td>
-        </tr>
-        <tr>
-            <td>Earnings in this round</td>
-            <td>{{ player.payoff }}</td>
-        </tr>
+<table class="table">
+<tr>
+    <th><strong>Round</strong></th>
+    <th>you</th>
+    {% for other_player_id in other_player_ids %}
+        <th>player {{ other_player_id }}</th>
 
-    </table>
+    {% endfor %}
 
+</tr>
+{% for rh in round_history %}
+<tr>
+    <td><strong>{{ rh.round_number }}</strong></td>
+    <td>{{ rh.me.catches }} </td>
+    {% for other in rh.others %}
+        <td>{{ other.catches }}</td>
+    {% endfor %}
+</tr>
+{% endfor %}
+</table>
 
     {% next_button %}
 {% endblock %}

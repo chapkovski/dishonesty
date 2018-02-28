@@ -18,7 +18,7 @@ class CognitiveReflectionTest(Page):
 
 class Religion (Page):
     form_model = models.Player
-    form_fields = ['attitude','religion','religion1','religion2','religion3','religion4','religion5','religion6','religion7',
+    form_fields = ['religion','religion1','religion2','religion3','religion4','religion5','religion6','religion7',
                    'income1','income2']
 
 class Psychometri(Page):

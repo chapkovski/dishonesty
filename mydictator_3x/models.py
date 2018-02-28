@@ -28,7 +28,8 @@ class Constants(BaseConstants):
 
 
 class Player(BasePlayer):
-    color = models.CharField()
+    allocation3x = models.IntegerField()
+
     def role(self):
         if self.id_in_group == 1:
             return 'sender'
@@ -42,18 +43,11 @@ class Player(BasePlayer):
 
 class Subsession(BaseSubsession):
 
-    def before_session_starts(self):
+    def creating_session(self):
         if self.round_number == 1:
-            paying_round = random.randint(1, Constants.num_rounds)
-            self.session.vars['paying_round'] = paying_round
-        if self.round_number == 3:
-            # reverse the roles
-            for group in self.get_groups():
-                players = group.get_players()
-                players.reverse()
-                group.set_players(players)
-        if self.round_number > 3:
-            self.group_like_round(3)
+            for p in self.get_players():
+                p.allocation3x=p.participant.vars['randnumber3x']*10
+
 
 
 

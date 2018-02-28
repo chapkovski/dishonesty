@@ -23,6 +23,7 @@ class Constants(BaseConstants):
         questions = list(csv.DictReader(f))
 
     num_rounds = len(questions)
+    instructions_template = 'quiz1/Instructions.html'
 
 
 class Subsession(BaseSubsession):

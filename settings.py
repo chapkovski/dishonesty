@@ -104,15 +104,22 @@ DEMO_PAGE_INTRO_TEXT = """
 
 ROOMS = [
     {
-        'name': 'econ101',
-        'display_name': 'Econ 101 class',
-        'participant_label_file': '_rooms/econ101.txt',
+        'name': 'econ102',
+        'display_name': 'Econ 102 class',
+        'participant_label_file': '_rooms/econ102.txt',
     },
     {
-        'name': 'live_demo',
-        'display_name': 'Room for live demo (no participant labels)',
+        'name': 'econ103',
+        'display_name': 'Econ 103 class',
+        'participant_label_file': '_rooms/econ103.txt',
+    },
+{
+        'name': 'all',
+        'display_name': 'all',
+        'participant_label_file': '_rooms/econ104.txt',
     },
 ]
+
 
 
 mturk_hit_settings = {
@@ -142,241 +149,39 @@ SESSION_CONFIG_DEFAULTS = {
 
 SESSION_CONFIGS = [
     {
-        'name': 'NOVELwexperiment',
-        'display_name': "November pilot REVISED",
+        'name': 'testing_role',
+        'display_name': "Dishonesty task and subjective norm",
+        'num_demo_participants': 4,
+        'app_sequence': ['ball_catch_intro','ball_catch3', 'random_number2c', 'mydictator_2c', 'random_number3x',
+                         'mydictator_3x', 'bret_ori'],
+    },
+    {
+        'name': 'task',
+        'display_name': "dishonesty task",
+        'num_demo_participants': 4,
+        'app_sequence': ['random_number2c', 'mydictator_2c','random_number3x','mydictator_3x', 'bret_ori'],
+    },
+    {
+        'name': 'wait_group',
+        'display_name': "Task 1",
         'num_demo_participants': 2,
-        'app_sequence': ['ball_catch3', 'random_number_edit', 'mydictator_example','quiz1', 'random_number3x', 'mydictator_3x','bret_ori',
+        'app_sequence': ['quiz1'],
+    },
+    {
+        'name': 'feb_exp',
+        'display_name': "testing average",
+        'num_demo_participants': 8,
+        'app_sequence': ['ball_catch_intro','ball_catch3','random_number2c','mydictator_2c','random_number3x', 'mydictator_3x','bret_ori',
                          'survey', 'payment_info'],
     },
     {
-        'name': 'averagetest',
-        'display_name': "average of others",
+        'name': 'corsetto_risk',
+        'display_name': "risk game",
         'num_demo_participants': 2,
-        'app_sequence': ['ball_catch4','random_number3','mydictator_3'],
-    },
-    {
-        'name': 'mynewrandomnumber',
-        'display_name': "Random number on click",
-        'num_demo_participants': 1,
-        'app_sequence': ['random_number1'],
-    },
-    {
-        'name': 'mynewexperiment',
-        'display_name': "November pilot",
-        'num_demo_participants': 2,
-        'app_sequence': ['ball_catch4', 'random_number_edit', 'mydictator_example','quiz1', 'random_number3', 'mydictator_3',
-                         'random_number2', 'mydictator_2', 'random_number2b', 'mydictator_2b','random_number2c', 'mydictator_2c','bret_ori',
+        'app_sequence': ['bret_ori',
                          'survey', 'payment_info'],
     },
 
-    {
-        'name': 'teststrategymethod',
-        'display_name': "dictator game",
-        'num_demo_participants': 2,
-        'app_sequence': ['random_number_edit', 'mydictator_example'],
-    },
-
-    {
-        'name': 'ballcatch',
-        'display_name': "catching ball",
-        'num_demo_participants': 2,
-        'app_sequence': ['ball_catch3'],
-    },
-    {
-        'name': 'quizfreeze',
-        'display_name': " quiz with error message",
-        'num_demo_participants': 2,
-        'app_sequence': ['quiz'],
-    },
-    {
-        'name': 'myexperimentupdated',
-        'display_name': " Study in Making and Communicating Decision Pilot",
-        'num_demo_participants': 2,
-        'app_sequence': ['real_effort_trial', 'random_number_edit', 'mydictator_example', 'quiz1', 'random_number1',
-                         'mydictator_1', 'random_number2', 'mydictator_2', 'random_number3', 'mydictator_3', 'bret',
-                         'survey', 'payment_info'],
-    },
-    {
-        'name': 'myexperiment_room2',
-        'display_name': " Study in Making and Communicating Decision Pilot II",
-        'num_demo_participants': 2,
-        'app_sequence': ['real_effort_trial', 'random_number1', 'mydictator1', 'quiz1', 'random_number2', 'bret',
-                         'survey', 'payment_info'],
-    },
-    {
-        'name': 'myexperiment_200917',
-        'display_name': " Testing All apps",
-        'num_demo_participants': 2,
-        'app_sequence': ['random_number4', 'mydictator_4', 'bret',
-                         'survey', 'payment_info'],
-    },
-    {
-        'name': 'public_goods',
-        'display_name': "Public Goods",
-        'num_demo_participants': 3,
-        'app_sequence': ['public_goods', 'payment_info'],
-    },
-    {
-        'name': 'trust',
-        'display_name': "Trust Game",
-        'num_demo_participants': 2,
-        'app_sequence': ['trust', 'payment_info'],
-    },
-    {
-        'name': 'guess_two_thirds',
-        'display_name': "Guess 2/3 of the Average",
-        'num_demo_participants': 3,
-        'app_sequence': ['guess_two_thirds', 'payment_info'],
-    },
-    {
-        'name': 'survey',
-        'display_name': "Survey",
-        'num_demo_participants': 1,
-        'app_sequence': ['survey', 'payment_info'],
-    },
-    {
-        'name': 'quiz',
-        'display_name': "Quiz",
-        'num_demo_participants': 1,
-        'app_sequence': ['quiz'],
-    },
-    {
-        'name': 'prisoner',
-        'display_name': "Prisoner's Dilemma",
-        'num_demo_participants': 2,
-        'app_sequence': ['prisoner', 'payment_info'],
-    },
-    {
-        'name': 'ultimatum',
-        'display_name': "Ultimatum (randomized: strategy vs. direct response)",
-        'num_demo_participants': 2,
-        'app_sequence': ['ultimatum', 'payment_info'],
-    },
-    {
-        'name': 'ultimatum_strategy',
-        'display_name': "Ultimatum (strategy method treatment)",
-        'num_demo_participants': 2,
-        'app_sequence': ['ultimatum', 'payment_info'],
-        'use_strategy_method': True,
-    },
-    {
-        'name': 'ultimatum_non_strategy',
-        'display_name': "Ultimatum (direct response treatment)",
-        'num_demo_participants': 2,
-        'app_sequence': ['ultimatum', 'payment_info'],
-        'use_strategy_method': False,
-    },
-    {
-        'name': 'vickrey_auction',
-        'display_name': "Vickrey Auction",
-        'num_demo_participants': 3,
-        'app_sequence': ['vickrey_auction', 'payment_info'],
-    },
-    {
-        'name': 'volunteer_dilemma',
-        'display_name': "Volunteer's Dilemma",
-        'num_demo_participants': 3,
-        'app_sequence': ['volunteer_dilemma', 'payment_info'],
-    },
-    {
-        'name': 'cournot',
-        'display_name': "Cournot Competition",
-        'num_demo_participants': 2,
-        'app_sequence': [
-            'cournot', 'payment_info'
-        ],
-    },
-    {
-        'name': 'principal_agent',
-        'display_name': "Principal Agent",
-        'num_demo_participants': 2,
-        'app_sequence': ['principal_agent', 'payment_info'],
-    },
-    {
-        'name': 'dictator',
-        'display_name': "Dictator Game",
-        'num_demo_participants': 2,
-        'app_sequence': ['dictator', 'payment_info'],
-    },
-    {
-        'name': 'matching_pennies',
-        'display_name': "Matching Pennies",
-        'num_demo_participants': 2,
-        'app_sequence': [
-            'matching_pennies',
-        ],
-    },
-    {
-        'name': 'traveler_dilemma',
-        'display_name': "Traveler's Dilemma",
-        'num_demo_participants': 2,
-        'app_sequence': ['traveler_dilemma', 'payment_info'],
-    },
-    {
-        'name': 'bargaining',
-        'display_name': "Bargaining Game",
-        'num_demo_participants': 2,
-        'app_sequence': ['bargaining', 'payment_info'],
-    },
-    {
-        'name': 'common_value_auction',
-        'display_name': "Common Value Auction",
-        'num_demo_participants': 3,
-        'app_sequence': ['common_value_auction', 'payment_info'],
-    },
-    {
-        'name': 'stackelberg',
-        'display_name': "Stackelberg Competition",
-        'real_world_currency_per_point': 0.01,
-        'num_demo_participants': 2,
-        'app_sequence': [
-            'stackelberg', 'payment_info'
-        ],
-    },
-    {
-        'name': 'bertrand',
-        'display_name': "Bertrand Competition",
-        'num_demo_participants': 2,
-        'app_sequence': [
-            'bertrand', 'payment_info'
-        ],
-    },
-    {
-        'name': 'real_effort',
-        'display_name': "Real-effort transcription task",
-        'num_demo_participants': 1,
-        'app_sequence': [
-            'real_effort',
-        ],
-    },
-    {
-        'name': 'lemon_market',
-        'display_name': "Lemon Market Game",
-        'num_demo_participants': 3,
-        'app_sequence': [
-            'lemon_market', 'payment_info'
-        ],
-    },
-    {
-        'name': 'battle_of_the_sexes',
-        'display_name': "Battle of the Sexes",
-        'num_demo_participants': 2,
-        'app_sequence': [
-            'battle_of_the_sexes', 'payment_info'
-        ],
-    },
-    {
-        'name': 'public_goods_simple',
-        'display_name': "Public Goods (simple version from tutorial)",
-        'num_demo_participants': 3,
-        'app_sequence': ['public_goods_simple', 'survey', 'payment_info'],
-    },
-    {
-        'name': 'trust_simple',
-        'display_name': "Trust Game (simple version from tutorial)",
-        'num_demo_participants': 2,
-        'app_sequence': ['trust_simple'],
-    },
 
 ]
 

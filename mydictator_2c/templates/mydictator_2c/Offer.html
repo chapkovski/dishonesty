@@ -6,15 +6,15 @@
 {% block content %}
 
 <p>
-    {{allocation3}} is the amount of allocation of shared endowment with
+    {{allocation2c}} is the amount of allocation of shared endowment with
     {{ Constants.players_per_group }} participants per group.
 
 </p>
 
 <p>In the production task you have played several rounds and generate
-    <strong> {{income1}} </strong> and you have successfully catch  <strong> {{catches1}} </strong> red balls. Your co-participant
-    with whom you will share the endowment with, on the other hand has earned <strong> {{player.get_partner_income}} </strong> and were able to catch
-    <strong> {{player.get_partner_catch}} </strong> </p>
+    <strong> {{'income1'}} </strong> and you have successfully catch  <strong> {{'catches1'}} </strong> red balls. Your co-participant
+    with whom you will share the endowment with, on the other hand has earned in average <strong> {{'income1'}} </strong> and were able to catch
+   in average  <strong> {{'catches1'}} </strong> </p>
 
 {% formfield group.Ikeep %}
 

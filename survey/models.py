@@ -99,7 +99,7 @@ class Player(BasePlayer):
         widget=widgets.RadioSelectHorizontal())
     hexaco3 = models.CharField(
         choices=['1','2','3', '4', '5'],
-        verbose_name='I remain unfriendly to someone who was mean to .',
+        verbose_name='I remain unfriendly to someone who was mean to me.',
         widget=widgets.RadioSelectHorizontal())
     hexaco4 = models.CharField(
         choices=['1', '2', '3', '4', '5'],

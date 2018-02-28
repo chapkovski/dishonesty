@@ -18,7 +18,6 @@ class Constants(BaseConstants):
     num_rounds = 1
 
 
-
     # Initial amount allocated to the dictator
     endowment = c(100)
 
@@ -28,60 +27,30 @@ class Constants(BaseConstants):
 
 
 class Player(BasePlayer):
-    color = models.CharField()
+    allocation2c=models.IntegerField()
+
     def role(self):
         if self.id_in_group == 1:
             return 'sender'
         if self.id_in_group == 2:
             return 'receiver'
 
-    def get_partner_catch(self):
-        partner = self.get_others_in_group()[0]
-        return partner.participant.vars['catches1']
+    #def get_partner_catch(self):
+        #partner = self.get_others_in_group()[0]
+        #return partner.participant.vars['catches1']
 
-    def get_partner_income(self):
-        partner = self.get_others_in_group()[0]
-        return partner.participant.vars['income1']
+    #def get_partner_income(self):
+        #partner = self.get_others_in_group()[0]
+        #return partner.participant.vars['income1']
 
 
 class Subsession(BaseSubsession):
-
-    def before_session_starts(self):
-        if self.round_number == 1:
-            paying_round = random.randint(1, Constants.num_rounds)
-            self.session.vars['paying_round'] = paying_round
-        if self.round_number == 3:
-            # reverse the roles
-            for group in self.get_groups():
-                players = group.get_players()
-                players.reverse()
-                group.set_players(players)
-        if self.round_number > 3:
-            self.group_like_round(3)
-
-
-
-"""""""""
- only if we random the assignment to be executed for each round
-    def before_session_starts(self):
+    def creating_session(self):
         if self.round_number == 1:
             for p in self.get_players():
-                p.participant.vars['color'] = random.choice(['blue', 'red'])
+                p.allocation2c=p.participant.vars['randnumber2c']*10
 
- --> only if we want to have it multiple round
-   def before_session_starts(self):
-       if self.round_number == 1:
-           paying_round = random.randint(1, Constants.num_rounds)
-       self.session.vars['paying_round'] = paying_round
-        if self.round_number == 3:
-            # reverse the roles
-            for group in self.get_groups():
-                players = group.get_players()
-                players.reverse()
-                group.set_players(players)
-        if self.round_number > 3:
-            self.group_like_round(3)
-"""""""""
+
 
 class Group(BaseGroup):
     kept = models.CurrencyField(

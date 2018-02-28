@@ -7,8 +7,10 @@ class Instructions(Page):
     pass
 
 class MyPage(Page):
+
     def vars_for_template(self):
        return {'randnumber2c': self.player.participant.vars['randnumber2c'],'allocation2c':self.player.participant.vars['randnumber2c']*10,}
+
 
     def is_displayed(self):
            return self.player.id_in_group == 1
