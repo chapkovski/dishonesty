@@ -16,13 +16,14 @@ See the comment below about how to randomize the order of pages.
 
 
 class Constants(BaseConstants):
-    name_in_url = 'quiz'
+    name_in_url = 'quiz1'
     players_per_group = None
 
-    with open('quiz/quiz.csv') as f:
+    with open('quiz1/quiz.csv') as f:
         questions = list(csv.DictReader(f))
 
     num_rounds = len(questions)
+    instructions_template = 'quiz1/Instructions.html'
 
 
 class Subsession(BaseSubsession):

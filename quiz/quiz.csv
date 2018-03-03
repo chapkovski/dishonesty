@@ -1,5 +1,5 @@
 id,question,choice1,choice2,choice3,choice4,solution
-1,What is the capital of China?,Shanghai,Guangzhou,Hong Kong,Beijing,Beijing
-2,What year did World War 1 start?,1896,1914,1921,1929,1914
-3,What is the second closest planet to the sun?,Saturn,Mercury,Venus,Mars,Venus
-4,What is the symbol for gold on the periodic table?,Au,Gd,Gl,Or,Au
+1,If the shared initial income is 40 and you allocate 20 how much will your opponent gets?,10,20,30,40,20
+2,If the shared initial income is 40 and the random number generated is 2 how much should you allocated to your co-player  ?,0,10,20,30,20
+3,If the shared initial income is 100 and the random number generated is 10 how much should you allocated to your co-player ?,20,60,80,100,100
+4,if the shared initial income is 100 and the random number generated is 5 while the multiplier benefit for me is 2 how much is the total benefit for myself ?,20,50,60,100,100

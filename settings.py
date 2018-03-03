@@ -5,15 +5,14 @@ import dj_database_url
 
 import otree.settings
 
-
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
-PROJECT_ROOT =os.path.dirname (os.path.abspath(__file__))
+PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
 
-STATIC_ROOT=os.path.join(PROJECT_ROOT,'staticfiles')
-STATIC_URL='/static/'
-STATIC_DIRS=(
-    os.path.join (PROJECT_ROOT,'static'),
-             )
+STATIC_ROOT = os.path.join(PROJECT_ROOT, 'staticfiles')
+STATIC_URL = '/static/'
+STATIC_DIRS = (
+    os.path.join(PROJECT_ROOT, 'static'),
+)
 # the environment variable OTREE_PRODUCTION controls whether Django runs in
 # DEBUG mode. If OTREE_PRODUCTION==1, then DEBUG=False
 if environ.get('OTREE_PRODUCTION') not in {None, '', '0'}:
@@ -28,7 +27,6 @@ MIDDLEWARE_CLASSES = (
     # Simplified static file serving.
     # https://warehouse.python.org/project/whitenoise/
 )
-
 
 DATABASES = {
     'default': dj_database_url.config(
@@ -62,17 +60,13 @@ ADMIN_USERNAME = 'admin'
 # for security, best to set admin password in an environment variable
 ADMIN_PASSWORD = environ.get('OTREE_ADMIN_PASSWORD')
 
-
 # setting for integration with AWS Mturk
 AWS_ACCESS_KEY_ID = environ.get('AWS_ACCESS_KEY_ID')
 AWS_SECRET_ACCESS_KEY = environ.get('AWS_SECRET_ACCESS_KEY')
 
-
 # e.g. EUR, CAD, GBP, CHF, CNY, JPY
 REAL_WORLD_CURRENCY_CODE = 'USD'
 USE_POINTS = True
-
-
 
 # e.g. en, de, fr, it, ja, zh-hans
 # see: https://docs.djangoproject.com/en/1.9/topics/i18n/#term-language-code
@@ -113,14 +107,12 @@ ROOMS = [
         'display_name': 'Econ 103 class',
         'participant_label_file': '_rooms/econ103.txt',
     },
-{
+    {
         'name': 'all',
         'display_name': 'all',
         'participant_label_file': '_rooms/econ104.txt',
     },
 ]
-
-
 
 mturk_hit_settings = {
     'keywords': ['bonus', 'study'],
@@ -129,11 +121,10 @@ mturk_hit_settings = {
     'frame_height': 500,
     'preview_template': 'global/MTurkPreview.html',
     'minutes_allotted_per_assignment': 60,
-    'expiration_hours': 7*24, # 7 days
-    #'grant_qualification_id': 'YOUR_QUALIFICATION_ID_HERE',# to prevent retakes
+    'expiration_hours': 7 * 24,  # 7 days
+    # 'grant_qualification_id': 'YOUR_QUALIFICATION_ID_HERE',# to prevent retakes
     'qualification_requirements': []
 }
-
 
 # if you set a property in SESSION_CONFIG_DEFAULTS, it will be inherited by all configs
 # in SESSION_CONFIGS, except those that explicitly override it.
@@ -148,40 +139,33 @@ SESSION_CONFIG_DEFAULTS = {
 }
 
 SESSION_CONFIGS = [
-    {
-        'name': 'testing_role',
-        'display_name': "Dishonesty task and subjective norm",
-        'num_demo_participants': 4,
-        'app_sequence': ['ball_catch_intro','ball_catch3', 'random_number2c', 'mydictator_2c', 'random_number3x',
-                         'mydictator_3x', 'bret_ori'],
-    },
-    {
-        'name': 'task',
-        'display_name': "dishonesty task",
-        'num_demo_participants': 4,
-        'app_sequence': ['random_number2c', 'mydictator_2c','random_number3x','mydictator_3x', 'bret_ori'],
-    },
-    {
-        'name': 'wait_group',
-        'display_name': "Task 1",
-        'num_demo_participants': 2,
-        'app_sequence': ['quiz1'],
-    },
-    {
-        'name': 'feb_exp',
-        'display_name': "testing average",
-        'num_demo_participants': 8,
-        'app_sequence': ['ball_catch_intro','ball_catch3','random_number2c','mydictator_2c','random_number3x', 'mydictator_3x','bret_ori',
-                         'survey', 'payment_info'],
-    },
-    {
-        'name': 'corsetto_risk',
-        'display_name': "risk game",
-        'num_demo_participants': 2,
-        'app_sequence': ['bret_ori',
-                         'survey', 'payment_info'],
-    },
 
+    # {
+    #     'name': 'total_exp',
+    #     'display_name': "overall experiment",
+    #     'num_demo_participants': 2,
+    #     'app_sequence': [
+    #         'ball_catch',
+    #         'dishonesty',
+    #         'beliefs',
+    #         'bret_ori',
+    #         'survey',
+    #         'payment_info'
+    #     ],
+    # },
+    {
+        'name': 'testing_parts',
+        'display_name': "for testing single modules",
+        'num_demo_participants': 2,
+        'app_sequence': [
+            # 'ball_catch',
+            'dishonesty',
+            # 'beliefs',
+            # 'bret_ori',
+            # 'survey',
+            # 'payment_info'
+        ],
+    },
 
 ]
 
