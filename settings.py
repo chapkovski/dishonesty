@@ -23,8 +23,6 @@ else:
 # don't share this with anybody.
 SECRET_KEY = '$^btcjif1707vdd(06nv7*mz(@hd07&5y*2i7!r^--$*aff6g_'
 
-
-
 DATABASES = {
     'default': dj_database_url.config(
         # Rather than hardcoding the DB parameters here,
@@ -151,17 +149,39 @@ SESSION_CONFIGS = [
     #     ],
     # },
     {
-        'name': 'testing_parts',
-        'display_name': "for testing single modules",
+        'name': 'dg_baseline',
+        'display_name': "dishonesty - baseline",
         'num_demo_participants': 2,
         'app_sequence': [
-            # 'ball_catch',
             'dishonesty_app',
-            # 'beliefs',
-            # 'bret_ori',
-            # 'survey',
-            # 'payment_info'
         ],
+    },
+    {
+        'name': 'dg_bonus',
+        'display_name': "dishonesty - bonus 10",
+        'num_demo_participants': 2,
+        'app_sequence': [
+            'dishonesty_app',
+        ],
+        'bonus': 10
+    },
+    {
+        'name': 'dg_extra_bonus',
+        'display_name': "dishonesty - bonus 20",
+        'num_demo_participants': 2,
+        'app_sequence': [
+            'dishonesty_app',
+        ],
+        'bonus': 20,
+    },
+    {
+        'name': 'dg_real_effort',
+        'display_name': "dishonesty - real effort task results shown",
+        'num_demo_participants': 2,
+        'app_sequence': [
+            'dishonesty_app',
+        ],
+        'is_real_effort_task_treatment': True,
     },
 
 ]
