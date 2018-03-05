@@ -15,7 +15,6 @@ class Introduction(Page):
             'allocation2c': self.player.participant.vars['randnumber2c'] * 10,
         }
 
-    timeout_seconds = 120
 
 
 class Instructions :

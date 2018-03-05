@@ -4,9 +4,9 @@
 {% block title %}Your Decision{% endblock %}
 
 {% block content %}
-<p>
+    <p>
 
- {% if player.id_in_group == 1 %}
+        {% if player.role == 'sender' %}
             You decided to keep <strong>{{ group.kept }}</strong> for yourself, so
             you got <strong>{{ offer }}</strong>.
         {% else %}
