@@ -1,0 +1,32 @@
+{% load otree_tags staticfiles %}
+
+<div class="instructions well well-lg">
+
+    <h3 class="panel-sub-heading">
+        Instructions
+    </h3>
+
+    <p>
+        By now, you have learned the amount of your shared endowment, and the proportion that you should allocate to
+        your co-player.
+    </p>
+
+    <p>
+        As <strong> the Sender </strong>, you will have to split {{ Constants.endowment }} with the other participant.
+        You will be the one to
+        decide how much she or he will retain. In this session, each of endowment share retrieved by the sender will be
+        multiplied by {{ Constants.rand_multiplier }}. Then the rest will go to
+        the receiver.
+        {% if subsession.is_bonus_treatment %}
+            The receiver, however, will receive additional {{ subsession.bonus }} irrespective the proportion of
+            endowment
+            allocated by the receiver.
+        {% endif %}
+
+        The table below, exhibits the relative benefit to <strong> the Sender</strong> and
+        <strong>the Receiver </strong> in each possible allocation chosen by <strong>the sender. </strong>
+    </p>
+
+    {% include 'dishonesty_app/includes/allocation_table.html' %}
+    <p>
+</div>

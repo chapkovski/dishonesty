@@ -23,10 +23,7 @@ else:
 # don't share this with anybody.
 SECRET_KEY = '$^btcjif1707vdd(06nv7*mz(@hd07&5y*2i7!r^--$*aff6g_'
 
-MIDDLEWARE_CLASSES = (
-    # Simplified static file serving.
-    # https://warehouse.python.org/project/whitenoise/
-)
+
 
 DATABASES = {
     'default': dj_database_url.config(

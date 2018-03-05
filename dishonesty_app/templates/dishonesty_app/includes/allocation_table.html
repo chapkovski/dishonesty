@@ -1,0 +1,21 @@
+{{ data_for_table.0 }}
+    <table class=table>
+        <tr>
+            <th> If The Sender keep</th>
+            {% for i in a %}
+                <td>{{i}}</td>
+            {% endfor %}
+        </tr>
+        <tr>
+            <th> The Sender's benefit</th>
+            {% for i in b %}
+                <td>{{i}}</td>
+            {% endfor %}
+        </tr>
+        <tr>
+            <th> The receiver's benefit</th>
+            {% for i in c %}
+                <td>{{i}}</td>
+            {% endfor %}
+        </tr>
+    </table>

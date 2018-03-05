@@ -21,13 +21,13 @@ class Constants(BaseConstants):
     players_per_group = 2
     num_rounds = 1
     endowment = c(100)
-    kept_choices = range(10, 100, 10)
+    kept_choices = range(10, 101, 10)
     rand_multiplier = 10
 
 
 class Subsession(BaseSubsession):
     is_bonus_treatment = models.BooleanField(doc='true if bonus part is in treatment')
-    multiplier = models.FloatField(doc='the multiplier of bonus for a recipient. Is used in some treatments')
+    bonus_multiplier = models.FloatField(doc='the multiplier of bonus for a recipient. Is used in some treatments')
     bonus = models.CurrencyField(doc="""how large is the bonus that should be paid to recipient. For 
                                         baseline treatment it is 0. For treatments with bonus (2b, 2c) it is a
                                          fixed amount or doubled fixed amount""",
@@ -60,9 +60,9 @@ class Group(BaseGroup):
 
     def set_payoffs(self):
         sender = self.get_player_by_role('sender')
-        receiver = self.get_player_by_id('receiver')
+        receiver = self.get_player_by_role('receiver')
         sender.payoff = self.kept * 2
-        receiver.payoff = Constants.endowment - self.kept + self.subsession.bonus * self.subsession.multiplier
+        receiver.payoff = Constants.endowment - self.kept + self.subsession.bonus * self.subsession.bonus_multiplier
 
 
 class Player(BasePlayer):

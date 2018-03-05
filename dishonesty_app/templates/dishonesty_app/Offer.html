@@ -5,30 +5,39 @@
 
 {% block content %}
 
-<p>
-    {{allocation2c}} is the amount of allocation of shared endowment with
-    {{ Constants.players_per_group }} participants per group.
+    <p>
+        {{ participant.vars.allocation }} is the amount of allocation of shared endowment with
+        {{ Constants.players_per_group }} participants per group.
 
-</p>
-
-<p>In the production task you have played several rounds and generate
-    <strong> {{'income1'}} </strong> and you have successfully catch  <strong> {{'catches1'}} </strong> red balls. Your co-participant
-    with whom you will share the endowment with, on the other hand has earned in average <strong> {{'income1'}} </strong> and were able to catch
-   in average  <strong> {{'catches1'}} </strong> </p>
-
-{% formfield group.Ikeep %}
-
-<p>
-
-    You are <strong> The Sender </strong>. After you learn the random number that appear to you, Now please provide the amount that you would like to allocate to your co-participant.Remember that
-    the receiver will receive additional 10 points irrespective the allocated amount of endowment received.
-
-</p>
-
-{% formfield group.kept %}
+    </p>
+    {% if subsession.is_real_effort_task_treatment %}
+        <p>In the production task you have played several rounds and generate
+            <strong> {{ 'income1' }} </strong> and you have successfully catch <strong> {{ 'catches1' }} </strong> red
+            balls. Your co-participant
+            with whom you will share the endowment with, on the other hand has earned in average
+            <strong> {{ 'income1' }} </strong> and were able to catch
+            in average <strong> {{ 'catches1' }} </strong></p>
+    {% endif %}
 
 
-{% next_button %}
+    {% formfield group.should_keep %}
+
+    <p>
+
+        You are <strong> The Sender </strong>. After you learn the random number that appear to you, Now please provide
+        the amount that you would like to allocate to your co-participant.
+        {% if subsession.is_bonus_treatment %}
+            Remember that the receiver will receive additional 10 points irrespective the allocated amount of endowment
+            received.
+        {% endif %}
+
+
+    </p>
+
+    {% formfield group.kept %}
+
+
+    {% next_button %}
 
 
 

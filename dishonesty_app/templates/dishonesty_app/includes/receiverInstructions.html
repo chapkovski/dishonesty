@@ -1,0 +1,40 @@
+{% load otree_tags staticfiles %}
+
+<div class="instructions well well-lg">
+
+    <h3 class="panel-sub-heading">
+        Instructions
+    </h3>
+
+    <p>
+        You are now paired randomly and anonymously with another participant. Our algorithm
+        will generate a number that determines the proportion of your endowment share. Your co-participant, <strong> the
+        sender </strong> allocates the proportion of shared
+        endowment and privately observes the random number displayed on their screen.
+    </p>
+
+    <p>
+        You are <strong> the receiver. </strong></p>
+
+    <p>
+        You will receive a part of {{ Constants.endowment }} given by your co-participant (the sender). The Sender will
+        decide how much she or he will retain. Each of endowment share retrieved by the sender will be multiplied
+        by {{ Constants.rand_multiplier }}.
+        The table below exhibit the relative benefit enjoyed by the Sender and the receiver in each possible allocation
+        chosen by the sender.
+    </p>
+
+
+    {% include 'dishonesty_app/includes/allocation_table.html' %}
+
+    <p>
+
+        As <strong> the receiver </strong>, we would like you to <strong> guess </strong> the amount of allocated
+        endowment by
+        your co-participant given the different possible random number indicated by our algorithm
+
+        Every correct guess will be rewarded 10 lab token to your wallet
+
+    </p>
+
+</div>
