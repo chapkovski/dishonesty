@@ -46,10 +46,17 @@ class ResultsWaitPage(WaitPage):
 
 
 class Results(Page):
+    def offer(self):
+        return Constants.endowment - self.group.kept
+    def bonus2(self):
+        return Constants.endowment - self.group.kept + self.subsession.bonus * self.subsession.bonus_multiplier
+
     def vars_for_template(self):
         return {
-
+            'offer': Constants.endowment - self.group.kept,
+            'bonus2':Constants.endowment - self.group.kept + self.subsession.bonus * self.subsession.bonus_multiplier
         }
+
 
 
 page_sequence = [

@@ -11,14 +11,11 @@
 
     </p>
     {% if subsession.is_real_effort_task_treatment %}
-        <p>In the production task you have played several rounds and generate
-            <strong> {{ 'income1' }} </strong> and you have successfully catch <strong> {{ 'catches1' }} </strong> red
-            balls. Your co-participant
-            with whom you will share the endowment with, on the other hand has earned in average
-            <strong> {{ 'income1' }} </strong> and were able to catch
-            in average <strong> {{ 'catches1' }} </strong></p>
+        <p> Your co-participant with whom you will share the endowment with, in the previous stage has earned
+            <strong> {{ 'income1' }} </strong> and were able to catch <strong> {{ 'catches1' }} </strong></p>
+        <p> Meanwhile, Members of other groups have shown the following performance in the previous stage:
+            average points earned {{'avgpoints'}} points; average number of balls catched {{'avgcatch'}}.'</p>
     {% endif %}
-
 
     {% formfield group.should_keep %}
 

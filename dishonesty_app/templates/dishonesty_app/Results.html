@@ -6,16 +6,26 @@
 {% block content %}
     <p>
 
-        {% if player.role == 'sender' %}
-            You decided to keep <strong>{{ group.kept }}</strong> for yourself, so
-            you got <strong>{{ offer }}</strong>.
-        {% else %}
-            The sender decided to keep <strong>{{ group.kept }}</strong>, so
-            you got <strong>{{ receiver_offer }}</strong>.
-        {% endif %}
-
-
+     {% if subsession.is_bonus_treatment %}
+            {% if player.role == 'sender' %}
+                You decided to keep <strong>{{ group.kept }}</strong> for yourself, so
+                you got <strong>{{ offer }}</strong>.
+            {% else %}
+                The sender decided to keep <strong>{{ group.kept }}</strong>, so
+                you got <strong>{{ bonus2 }}</strong>.
+            {% endif %}
+     {% else %}
+            {% if player.role == 'sender' %}
+                You decided to keep <strong>{{ group.kept }}</strong> for yourself, so
+                you got <strong>{{ offer }}</strong>.
+            {% else %}
+                The sender decided to keep <strong>{{ group.kept }}</strong>, so
+                you got <strong>{{ offer }}</strong>.
+            {% endif %}
+     {% endif %}
     </p>
 
+
     <input class="btn btn-primary btn-lg next-button" type="submit" value="Proceed"/>
+
 {% endblock %}
