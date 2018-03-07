@@ -48,10 +48,7 @@ class ResultsWaitPage(WaitPage):
 class Results(Page):
     def vars_for_template(self):
         return {
-            'offer': (self.group.kept) * 2,
-            'receiver_offer': Constants.endowment - self.group.kept,
-            'offer2': self.group.kept,
-            'receiver_offer2': (Constants.endowment - self.group.kept) * 2,
+
         }
 
 
