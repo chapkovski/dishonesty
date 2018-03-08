@@ -4,7 +4,7 @@ from otree.api import (
 )
 
 
-author = "rizal"
+author = "rap"
 
 doc = """
 Ball-Catching Task
@@ -54,7 +54,7 @@ class Group(BaseGroup):
                 group_num += 1
                 g.average1=g.total_blue/group_num
                 g.average=round(g.average1,2)
-                g.session.vars['avg'] = g.average
+                g.session.vars['avgcatch'] = g.average
 
 
 

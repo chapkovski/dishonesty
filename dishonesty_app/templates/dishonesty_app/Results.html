@@ -9,7 +9,7 @@
      {% if subsession.is_bonus_treatment %}
             {% if player.role == 'sender' %}
                 You decided to keep <strong>{{ group.kept }}</strong> for yourself, so
-                you got <strong>{{ offer }}</strong>.
+                you got <strong>{{ group.kept }}</strong>.
             {% else %}
                 The sender decided to keep <strong>{{ group.kept }}</strong>, so
                 you got <strong>{{ bonus2 }}</strong>.
@@ -17,7 +17,7 @@
      {% else %}
             {% if player.role == 'sender' %}
                 You decided to keep <strong>{{ group.kept }}</strong> for yourself, so
-                you got <strong>{{ offer }}</strong>.
+                you got <strong>{{ group.kept }}</strong>.
             {% else %}
                 The sender decided to keep <strong>{{ group.kept }}</strong>, so
                 you got <strong>{{ offer }}</strong>.

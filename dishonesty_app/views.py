@@ -44,6 +44,13 @@ class ResultsWaitPage(WaitPage):
             body_text = 'Please wait'
         return {'body_text': body_text}
 
+class GuessStrategy(Page):
+    form_model = models.Group
+    form_fields = ['response_{}'.format(int(i)) for i in
+                   Constants.offer_choices]
+    #form_fields =['guess']
+    def is_displayed(self):
+        return self.player.role() == 'receiver'
 
 class Results(Page):
     def offer(self):
@@ -65,5 +72,6 @@ page_sequence = [
     DGInstructions2,
     Offer,
     ResultsWaitPage,
+    GuessStrategy,
     Results
 ]

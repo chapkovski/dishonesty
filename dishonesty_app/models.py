@@ -23,7 +23,8 @@ class Constants(BaseConstants):
     endowment = c(100)
     kept_choices = range(10, 101, 10)
     rand_multiplier = 10
-
+    offer_increment = c(10)
+    offer_choices = currency_range(10, endowment, offer_increment)
 
 class Subsession(BaseSubsession):
     is_bonus_treatment = models.BooleanField(doc='true if bonus part is in treatment')
@@ -44,6 +45,9 @@ class Subsession(BaseSubsession):
                 p.vars['allocation'] = p.vars['randnumber'] * 10
 
 
+def question(amount):
+    return 'How much do you think the sender will offer to you if the random number was showing the number of {}?'.format(c(amount))
+
 class Group(BaseGroup):
     kept = models.CurrencyField(
         doc="""Amount sender decided to keep for himself""",
@@ -54,9 +58,47 @@ class Group(BaseGroup):
     should_keep = models.CurrencyField(
         choices=Constants.kept_choices,
         doc="""receiver kept""",
-        verbose_name='I understand that the amount of random number advise me to allocate this amount',
+        verbose_name='I understand that the random number advise me to allocate this amount',
         widget=widgets.RadioSelectHorizontal()
     )
+
+    guess = models.CurrencyField(
+        doc="""guessing the Amount of sender give irrespective of the random number """,
+        min=0, max=Constants.endowment,
+        verbose_name='I think my co-participant will allocate (from 0 to %i)'% Constants.endowment
+    )
+
+    # for strategy method
+    response_10 = models.CurrencyField(
+        choices=[None, '10', '20', '30', '40', '50', '60', '70', '80', '90', '100'],
+        widget=widgets.RadioSelectHorizontal(), verbose_name=question(10))
+    response_20 = models.CurrencyField(
+        choices=[None, '10', '20', '30', '40', '50', '60', '70', '80', '90', '100'],
+        widget=widgets.RadioSelectHorizontal(), verbose_name=question(20))
+    response_30 = models.CurrencyField(
+        choices=[None, '10', '20', '30', '40', '50', '60', '70', '80', '90', '100'],
+        widget=widgets.RadioSelectHorizontal(), verbose_name=question(30))
+    response_40 = models.CharField(
+        choices=[None, '10', '20', '30', '40', '50', '60', '70', '80', '90', '100'],
+        widget=widgets.RadioSelectHorizontal(), verbose_name=question(40))
+    response_50 = models.CharField(
+        choices=[None, '10', '20', '30', '40', '50', '60', '70', '80', '90', '100'],
+        widget=widgets.RadioSelectHorizontal(), verbose_name=question(50))
+    response_60 = models.CharField(
+        choices=[None, '10', '20', '30', '40', '50', '60', '70', '80', '90', '100'],
+        widget=widgets.RadioSelectHorizontal(), verbose_name=question(60))
+    response_70 = models.CharField(
+        choices=[None, '10', '20', '30', '40', '50', '60', '70', '80', '90', '100'],
+        widget=widgets.RadioSelectHorizontal(), verbose_name=question(70))
+    response_80 = models.CharField(
+        choices=[None, '10', '20', '30', '40', '50', '60', '70', '80', '90', '100'],
+        widget=widgets.RadioSelectHorizontal(), verbose_name=question(80))
+    response_90 = models.CharField(
+        choices=[None, '10', '20', '30', '40', '50', '60', '70', '80', '90', '100'],
+        widget=widgets.RadioSelectHorizontal(), verbose_name=question(90))
+    response_100 = models.CharField(
+        choices=[None, '10', '20', '30', '40', '50', '60', '70', '80', '90', '100'],
+        widget=widgets.RadioSelectHorizontal(), verbose_name=question(100))
 
     def set_payoffs(self):
         sender = self.get_player_by_role('sender')
