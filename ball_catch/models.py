@@ -77,17 +77,17 @@ class Subsession(BaseSubsession):
                     p.prize = 20
                     p.cost = 5 * (p.condition - 2)
 
-total_group = models.IntegerField(doc="""the total amount of catches""",initial=0)
-group_num = models.IntegerField(doc="""number of group""",initial=0)
+
 
 class Group(BaseGroup):
-    ...
-    #def aggregate(self):
-       # if self.round_number == 1:
-        #    for p in self.get_players():
-          #      players = self.get_players()
-           #     players.total= total_group + Player.catches()
-           #     print('total is:', players.total)
+    total_catch = models.IntegerField(doc="""the total amount of catches""", initial=0)
+    total_income = models.IntegerField(doc="""the total amount of payoff""", initial=0)
+    
+
+ 
+           
+        #  total_catch= sum(p.participant.vars['catches2'])
+           #    print('@@@@total is:', p.totalcatch)
            #     p.average1=g.total_blue/group_num
            #     p.average=round(p.average1,2)
            #     p.session.vars['avg'] = p.average
@@ -102,7 +102,7 @@ class Player(BasePlayer):
     clicks = models.IntegerField()
     score = models.IntegerField(doc="""the amount of score""", initial=0)
     expense = models.IntegerField(doc="""cost of clicking""", initial=0)
-
+    catches2=models.IntegerField(doc="""try to find out what is inside""", initial=0)
 
     def role(self):
         if self.participant.vars['color']=="red" :
@@ -126,7 +126,7 @@ class Player(BasePlayer):
         self.partner.ballcatch = self.partner.catches * 1
         self.participant.vars['income2'] = self.partner.payoff
         print('@@@@ income2:', self.participant.vars['income2'])
-        self.participant.vars['catches2'] = self.partner.ballcatch
+        self.participant.vars['catchesP'] = self.partner.ballcatch
         print('@@@@ catches2:', self.participant.vars['income2'])
 
 

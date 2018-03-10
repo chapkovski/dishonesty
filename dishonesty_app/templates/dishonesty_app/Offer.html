@@ -12,9 +12,9 @@
     </p>
     {% if subsession.is_real_effort_task_treatment %}
         <p> Your co-participant with whom you will share the endowment with, in the previous stage has earned
-            <strong> {{ 'income2' }} </strong> and were able to catch <strong> {{ 'catches2' }} </strong></p>
+            <strong> {{ get_partner.Player.participant.vars.income2 }} </strong> and were able to catch <strong> {{ 'catches2' }} </strong></p>
         <p> Meanwhile, Members of other groups have shown the following performance in the previous stage:
-            average points earned {{'avgpoints'}} points; average number of balls catched {{'avgcatch'}}.'</p>
+            average points earned <strong>{{session.vars.avgpoints}}</strong> points; average number of balls catched <strong>{{session.vars.avgcatch}}</strong> </p>
     {% endif %}
 
     {% formfield group.should_keep %}

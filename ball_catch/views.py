@@ -37,9 +37,20 @@ class firstphase(Page):
         return self.participant.vars['color']=='blue'
 
 class ResultsWaitPage(WaitPage):
-    ...
-   # def after_all_players_arrive(self):
-       # self.group.aggregate()
+    def after_all_players_arrive(self):
+        group = self.group
+        players = group.get_players()
+        catches2= [p.catches for p in players]
+        group.total_catch=sum(catches2)
+        avgcatch = group.total_catch/len(players)
+        group.avg=round(avgcatch,2)
+        self.session.vars['avgcatch']=group.avg
+
+        income= [p.payoff for p in players if p.payoff is not None]
+        group.total_income = sum(income)
+        avgincome = group.total_income / len(players)
+        group.avgincome = round(avgincome, 1)
+        self.session.vars['avgpoints'] = group.avgincome
 
 
 class Results(Page):

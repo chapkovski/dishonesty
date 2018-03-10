@@ -159,11 +159,12 @@ SESSION_CONFIGS = [
     },
     {
         'name': 'RET_Dshnst',
-        'display_name': "dishonesty - RET",
+        'display_name': "dishonesty Real Effort - RET",
         'num_demo_participants': 4,
         'app_sequence': ['ball_catch',
             'dishonesty_app',
         ],
+         'is_real_effort_task_treatment': True,
     },
         {
         'name': 'dg_baseline',
