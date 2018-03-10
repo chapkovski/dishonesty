@@ -82,8 +82,26 @@ class Subsession(BaseSubsession):
 class Group(BaseGroup):
     total_catch = models.IntegerField(doc="""the total amount of catches""", initial=0)
     total_income = models.IntegerField(doc="""the total amount of payoff""", initial=0)
+    avg = models.IntegerField(doc="""the total amount of catches""", initial=0)
+    avgincome = models.IntegerField(doc="""the total amount of payoff""", initial=0)
     
+    def get_partner(self):
+         #p1=self.get_player_by_role('sender')
+         p2= self.get_player_by_role('receiver')
+         for p in self.get_players():
+                output = [p2.catches]
+                p.participant.vars['output2'] = output
+                print('@@@@output2:',p.participant.vars['output2'])
+    #    for p in self.get_player_by_role('sender'):
+     #       my_partner_income=
+     #       p.participant.vars['income2']= my_partner_income
 
+        #self.partner.ballcatch = self.partner.catches * 1
+        #self.participant.vars['income2'] = self.partner.payoff
+        #print('@@@@ income2:', self.participant.vars['income2'])
+        #self.participant.vars['catches3'] = self.partner.ballcatch
+        #print('@@@@ catches3:', self.participant.vars['catches3'])
+        #self.player.get_partner()
  
            
         #  total_catch= sum(p.participant.vars['catches2'])
@@ -119,15 +137,7 @@ class Player(BasePlayer):
         print('@@@@ income1:', self.participant.vars['income1'])
         self.participant.vars['catches1']= self.ballcatch
 
-    def get_partner(self):
-        self.partner = self.get_others_in_group()[0]
-        self.partner.payoff = self.partner.score - self.partner.expense
-        print('@@@@ payoff:', self.partner.payoff)
-        self.partner.ballcatch = self.partner.catches * 1
-        self.participant.vars['income2'] = self.partner.payoff
-        print('@@@@ income2:', self.participant.vars['income2'])
-        self.participant.vars['catchesP'] = self.partner.ballcatch
-        print('@@@@ catches2:', self.participant.vars['income2'])
+
 
 
 

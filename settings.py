@@ -164,7 +164,7 @@ SESSION_CONFIGS = [
         'app_sequence': ['ball_catch',
             'dishonesty_app',
         ],
-         'is_real_effort_task_treatment': True,
+        'is_real_effort_task_treatment': True,
     },
         {
         'name': 'dg_baseline',
@@ -173,6 +173,7 @@ SESSION_CONFIGS = [
         'app_sequence': [
             'dishonesty_app',
         ],
+        
     },
     {
         'name': 'dg_bonus',

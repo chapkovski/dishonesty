@@ -2,9 +2,7 @@
 
 <div class="instructions well well-lg">
 
-    <h3 class="panel-sub-heading">
-        Instructions
-    </h3>
+
 
     <p>
         By now, you have learned the amount of your lab token, and the proportion that you should allocate to
@@ -15,7 +13,7 @@
         As <strong> the Sender </strong>, you will have to split {{ Constants.endowment }} with the other participant.
         You will be the one to
         decide how much she or he will retain. In this session, each of lab token share retrieved by the sender will be
-        multiplied by {{ Constants.rand_multiplier }}. Then the rest will go to
+        multiplied by <strong>2</strong>. Then the rest will go to
         the receiver.
         {% if subsession.is_bonus_treatment %}
             The receiver, however, will receive additional {{ subsession.bonus }} irrespective the proportion of

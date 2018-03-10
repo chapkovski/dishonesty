@@ -26,7 +26,8 @@ class Task(Page):
 
     def before_next_page(self):
         self.player.set_payoff()
-        self.player.get_partner()
+        self.group.get_partner()
+        
 
     def is_displayed(self):
         return self.participant.vars['color']=='blue'
@@ -43,7 +44,7 @@ class ResultsWaitPage(WaitPage):
         catches2= [p.catches for p in players]
         group.total_catch=sum(catches2)
         avgcatch = group.total_catch/len(players)
-        group.avg=round(avgcatch,2)
+        group.avg=round(avgcatch,1)
         self.session.vars['avgcatch']=group.avg
 
         income= [p.payoff for p in players if p.payoff is not None]
@@ -51,6 +52,7 @@ class ResultsWaitPage(WaitPage):
         avgincome = group.total_income / len(players)
         group.avgincome = round(avgincome, 1)
         self.session.vars['avgpoints'] = group.avgincome
+
 
 
 class Results(Page):

@@ -30,6 +30,7 @@ class Constants(BaseConstants):
 
 
 class Subsession(BaseSubsession):
+    is_real_effort_task_treatment = models.BooleanField (doc='true if b part is real effort treatment')
     is_bonus_treatment = models.BooleanField(doc='true if bonus part is in treatment')
     bonus_multiplier = models.FloatField(doc='the multiplier of bonus for a recipient. Is used in some treatments')
     bonus = models.CurrencyField(doc="""how large is the bonus that should be paid to recipient. For 
@@ -38,7 +39,7 @@ class Subsession(BaseSubsession):
                                  initial=0)
 
     def creating_session(self):
-
+        self.is_real_effort_task_treatment= True
         self.bonus = self.session.config.get('bonus', 0)
         self.is_bonus_treatment = True if self.bonus > 0 else False
         self.bonus_multiplier = self.session.config.get('bonus_multiplier', 1)
