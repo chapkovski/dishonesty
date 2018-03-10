@@ -53,7 +53,7 @@ class Subsession(BaseSubsession):
 
 
 def question(amount):
-    return 'How much do you think the sender will offer to you if the random number was showing the number of {}?'.format(
+    return 'How much do you think the sender will allocate the lab token to you if our algorithm suggested him to share {}?'.format(
         c(amount))
 
 
@@ -67,7 +67,7 @@ class Group(BaseGroup):
     should_keep = models.CurrencyField(
         choices=Constants.kept_choices,
         doc="""receiver kept""",
-        verbose_name='I understand that the random number advise me to allocate this amount',
+        verbose_name='I understand that the random number advises me to allocate this amount',
         widget=widgets.RadioSelectHorizontal()
     )
     receiver_guess = models.IntegerField(doc='to retrieve matching guess from Guesses model')
@@ -81,22 +81,21 @@ class Group(BaseGroup):
 
 
 class Player(BasePlayer):
-    dump_guess_answer = models.LongStringField()
+    dump_guess_answer = models.StringField()
 
     def dumping_answer(self):
         return json.dumps(list(self.guesses.all().values('sender_choice', 'answer')))
 
     def role(self):
-        if self.id_in_group == 1:
+        if self.participant.vars['color']=="red" :
             return 'sender'
-        if self.id_in_group == 2:
+        if self.participant.vars['color']=="blue":
             return 'receiver'
 
 
 class GuessChoice(djmodels.Model):
     sender_choice = models.IntegerField(doc='to show an option how much a Sender will send')
     answer = models.IntegerField(doc='to store Reciever answer of his guess',
-                                 widget=widgets.RadioSelectHorizontal(),
                                  choices=Constants.offer_choices,
                                  null=True,
                                  )

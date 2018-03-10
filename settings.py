@@ -149,6 +149,14 @@ SESSION_CONFIGS = [
     #     ],
     # },
     {
+        'name': 'RET_Dshnst',
+        'display_name': "dishonesty - RET",
+        'num_demo_participants': 4,
+        'app_sequence': ['ball_catch',
+            'dishonesty_app',
+        ],
+    },
+        {
         'name': 'dg_baseline',
         'display_name': "dishonesty - baseline",
         'num_demo_participants': 2,

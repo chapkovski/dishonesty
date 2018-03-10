@@ -21,52 +21,52 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='group',
             name='response_10',
-            field=otree.db.models.CurrencyField(choices=[(None, None), ('10', '10'), ('20', '20'), ('30', '30'), ('40', '40'), ('50', '50'), ('60', '60'), ('70', '70'), ('80', '80'), ('90', '90'), ('100', '100')], null=True, verbose_name='How much do you think the sender will offer to you if the random number was showing the number of 10 points?'),
+            field=otree.db.models.CurrencyField(choices=[(None, None), ('10', '10'), ('20', '20'), ('30', '30'), ('40', '40'), ('50', '50'), ('60', '60'), ('70', '70'), ('80', '80'), ('90', '90'), ('100', '100')], null=True, verbose_name='How much do you think the sender will allocate the lab token to you if our algorithm suggested him to share 10 points?'),
         ),
         migrations.AddField(
             model_name='group',
             name='response_100',
-            field=otree.db.models.StringField(choices=[(None, None), ('10', '10'), ('20', '20'), ('30', '30'), ('40', '40'), ('50', '50'), ('60', '60'), ('70', '70'), ('80', '80'), ('90', '90'), ('100', '100')], max_length=10000, null=True, verbose_name='How much do you think the sender will offer to you if the random number was showing the number of 100 points?'),
+            field=otree.db.models.StringField(choices=[(None, None), ('10', '10'), ('20', '20'), ('30', '30'), ('40', '40'), ('50', '50'), ('60', '60'), ('70', '70'), ('80', '80'), ('90', '90'), ('100', '100')], max_length=10000, null=True, verbose_name='How much do you think the sender will allocate the lab token to you if our algorithm suggested him to share 100 points?'),
         ),
         migrations.AddField(
             model_name='group',
             name='response_20',
-            field=otree.db.models.CurrencyField(choices=[(None, None), ('10', '10'), ('20', '20'), ('30', '30'), ('40', '40'), ('50', '50'), ('60', '60'), ('70', '70'), ('80', '80'), ('90', '90'), ('100', '100')], null=True, verbose_name='How much do you think the sender will offer to you if the random number was showing the number of 20 points?'),
+            field=otree.db.models.CurrencyField(choices=[(None, None), ('10', '10'), ('20', '20'), ('30', '30'), ('40', '40'), ('50', '50'), ('60', '60'), ('70', '70'), ('80', '80'), ('90', '90'), ('100', '100')], null=True, verbose_name='How much do you think the sender will allocate the lab token to you if our algorithm suggested him to share 20 points?'),
         ),
         migrations.AddField(
             model_name='group',
             name='response_30',
-            field=otree.db.models.CurrencyField(choices=[(None, None), ('10', '10'), ('20', '20'), ('30', '30'), ('40', '40'), ('50', '50'), ('60', '60'), ('70', '70'), ('80', '80'), ('90', '90'), ('100', '100')], null=True, verbose_name='How much do you think the sender will offer to you if the random number was showing the number of 30 points?'),
+            field=otree.db.models.CurrencyField(choices=[(None, None), ('10', '10'), ('20', '20'), ('30', '30'), ('40', '40'), ('50', '50'), ('60', '60'), ('70', '70'), ('80', '80'), ('90', '90'), ('100', '100')], null=True, verbose_name='How much do you think the sender will allocate the lab token to you if our algorithm suggested him to share 30 points?'),
         ),
         migrations.AddField(
             model_name='group',
             name='response_40',
-            field=otree.db.models.StringField(choices=[(None, None), ('10', '10'), ('20', '20'), ('30', '30'), ('40', '40'), ('50', '50'), ('60', '60'), ('70', '70'), ('80', '80'), ('90', '90'), ('100', '100')], max_length=10000, null=True, verbose_name='How much do you think the sender will offer to you if the random number was showing the number of 40 points?'),
+            field=otree.db.models.StringField(choices=[(None, None), ('10', '10'), ('20', '20'), ('30', '30'), ('40', '40'), ('50', '50'), ('60', '60'), ('70', '70'), ('80', '80'), ('90', '90'), ('100', '100')], max_length=10000, null=True, verbose_name='How much do you think the sender will allocate the lab token to you if our algorithm suggested him to share 40 points?'),
         ),
         migrations.AddField(
             model_name='group',
             name='response_50',
-            field=otree.db.models.StringField(choices=[(None, None), ('10', '10'), ('20', '20'), ('30', '30'), ('40', '40'), ('50', '50'), ('60', '60'), ('70', '70'), ('80', '80'), ('90', '90'), ('100', '100')], max_length=10000, null=True, verbose_name='How much do you think the sender will offer to you if the random number was showing the number of 50 points?'),
+            field=otree.db.models.StringField(choices=[(None, None), ('10', '10'), ('20', '20'), ('30', '30'), ('40', '40'), ('50', '50'), ('60', '60'), ('70', '70'), ('80', '80'), ('90', '90'), ('100', '100')], max_length=10000, null=True, verbose_name='How much do you think the sender will allocate the lab token to you if our algorithm suggested him to 50 share points?'),
         ),
         migrations.AddField(
             model_name='group',
             name='response_60',
-            field=otree.db.models.StringField(choices=[(None, None), ('10', '10'), ('20', '20'), ('30', '30'), ('40', '40'), ('50', '50'), ('60', '60'), ('70', '70'), ('80', '80'), ('90', '90'), ('100', '100')], max_length=10000, null=True, verbose_name='How much do you think the sender will offer to you if the random number was showing the number of 60 points?'),
+            field=otree.db.models.StringField(choices=[(None, None), ('10', '10'), ('20', '20'), ('30', '30'), ('40', '40'), ('50', '50'), ('60', '60'), ('70', '70'), ('80', '80'), ('90', '90'), ('100', '100')], max_length=10000, null=True, verbose_name='How much do you think the sender will allocate the lab token to you if our algorithm suggested him to share 60 points?'),
         ),
         migrations.AddField(
             model_name='group',
             name='response_70',
-            field=otree.db.models.StringField(choices=[(None, None), ('10', '10'), ('20', '20'), ('30', '30'), ('40', '40'), ('50', '50'), ('60', '60'), ('70', '70'), ('80', '80'), ('90', '90'), ('100', '100')], max_length=10000, null=True, verbose_name='How much do you think the sender will offer to you if the random number was showing the number of 70 points?'),
+            field=otree.db.models.StringField(choices=[(None, None), ('10', '10'), ('20', '20'), ('30', '30'), ('40', '40'), ('50', '50'), ('60', '60'), ('70', '70'), ('80', '80'), ('90', '90'), ('100', '100')], max_length=10000, null=True, verbose_name='How much do you think the sender will allocate the lab token to you if our algorithm suggested him to share 70 points?'),
         ),
         migrations.AddField(
             model_name='group',
             name='response_80',
-            field=otree.db.models.StringField(choices=[(None, None), ('10', '10'), ('20', '20'), ('30', '30'), ('40', '40'), ('50', '50'), ('60', '60'), ('70', '70'), ('80', '80'), ('90', '90'), ('100', '100')], max_length=10000, null=True, verbose_name='How much do you think the sender will offer to you if the random number was showing the number of 80 points?'),
+            field=otree.db.models.StringField(choices=[(None, None), ('10', '10'), ('20', '20'), ('30', '30'), ('40', '40'), ('50', '50'), ('60', '60'), ('70', '70'), ('80', '80'), ('90', '90'), ('100', '100')], max_length=10000, null=True, verbose_name='How much do you think the sender will allocate the lab token to you if our algorithm suggested him to share 80 points?'),
         ),
         migrations.AddField(
             model_name='group',
             name='response_90',
-            field=otree.db.models.StringField(choices=[(None, None), ('10', '10'), ('20', '20'), ('30', '30'), ('40', '40'), ('50', '50'), ('60', '60'), ('70', '70'), ('80', '80'), ('90', '90'), ('100', '100')], max_length=10000, null=True, verbose_name='How much do you think the sender will offer to you if the random number was showing the number of 90 points?'),
+            field=otree.db.models.StringField(choices=[(None, None), ('10', '10'), ('20', '20'), ('30', '30'), ('40', '40'), ('50', '50'), ('60', '60'), ('70', '70'), ('80', '80'), ('90', '90'), ('100', '100')], max_length=10000, null=True, verbose_name='How much do you think the sender will allocate the lab token to you if our algorithm suggested him to share 90 points?'),
         ),
         migrations.AlterField(
             model_name='group',

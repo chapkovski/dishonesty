@@ -5,11 +5,7 @@ from .models import Constants
 
 class Introduction(Page):
     def vars_for_template(self):
-        intro_text = "ball_catch3/Instructions.html"
-
-        if self.round_number== 1 and self.participant.vars['color'] == 'blue' :
-            intro_text="ball_catch3/Instructions_2.html"
-
+        intro_text = "ball_catch/Instructions.html"
         return {
             'introduction': intro_text,
         }
@@ -30,6 +26,7 @@ class Task(Page):
 
     def before_next_page(self):
         self.player.set_payoff()
+        self.player.get_partner()
 
     def is_displayed(self):
         return self.participant.vars['color']=='blue'
@@ -40,11 +37,10 @@ class firstphase(Page):
         return self.participant.vars['color']=='blue'
 
 class ResultsWaitPage(WaitPage):
+    ...
+   # def after_all_players_arrive(self):
+       # self.group.aggregate()
 
-    def after_all_players_arrive(self):
-        self.group.biru()
-        for g in self.group.get_players():
-            self.group.biru()
 
 class Results(Page):
     def is_displayed(self):
@@ -73,7 +69,6 @@ class Roundhistory(Page) :
 
 page_sequence = [
     Introduction,
-    firstphase,
     Task,
     ResultsWaitPage,
     Results,
@@ -82,28 +77,28 @@ page_sequence = [
 
 # FROM INTRO
 
-from otree.api import Currency as c, currency_range
-from . import models
-from ._builtin import Page, WaitPage
-from .models import Constants
+#from otree.api import Currency as c, currency_range
+#from . import models
+#from ._builtin import Page, WaitPage
+#from .models import Constants
 
-class Introduction(Page):
+#class Introduction(Page):
     #form_model = models.Player
     #form_fields = ['color']
 
 
-    def vars_for_template(self):
-        intro_text = "ball_catch_intro/Instructions.html"
+    #def vars_for_template(self):
+        #intro_text = "ball_catch_intro/Instructions.html"
 
-        if self.round_number > 1 and self.player.id_in_group == 2 :
-            intro_text="ball_catch_intro/Instructions_2.html"
+        #if self.round_number > 1 and self.player.id_in_group == 2 :
+          #  intro_text="ball_catch_intro/Instructions_2.html"
 
-        return {
-            'introduction': intro_text,
-        }
+        #return {
+       #     'introduction': intro_text,
+       # }
 
 
 
-page_sequence = [
-    Introduction
-]
+#page_sequence = [
+    #Introduction
+#]
