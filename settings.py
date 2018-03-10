@@ -149,6 +149,15 @@ SESSION_CONFIGS = [
     #     ],
     # },
     {
+        'name': 'BRET_Dshnst',
+        'display_name': "dishonesty - BRET",
+        'num_demo_participants': 4,
+        'app_sequence': ['ball_catch',
+                         'dishonesty_app',
+                         'bret_ori',
+                         ],
+    },
+    {
         'name': 'RET_Dshnst',
         'display_name': "dishonesty - RET",
         'num_demo_participants': 4,

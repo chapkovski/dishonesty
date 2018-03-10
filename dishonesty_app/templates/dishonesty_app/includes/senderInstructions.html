@@ -7,19 +7,19 @@
     </h3>
 
     <p>
-        By now, you have learned the amount of your shared endowment, and the proportion that you should allocate to
-        your co-player.
+        By now, you have learned the amount of your lab token, and the proportion that you should allocate to
+        your co-participant.
     </p>
 
     <p>
         As <strong> the Sender </strong>, you will have to split {{ Constants.endowment }} with the other participant.
         You will be the one to
-        decide how much she or he will retain. In this session, each of endowment share retrieved by the sender will be
+        decide how much she or he will retain. In this session, each of lab token share retrieved by the sender will be
         multiplied by {{ Constants.rand_multiplier }}. Then the rest will go to
         the receiver.
         {% if subsession.is_bonus_treatment %}
             The receiver, however, will receive additional {{ subsession.bonus }} irrespective the proportion of
-            endowment
+            lab token
             allocated by the receiver.
         {% endif %}
 

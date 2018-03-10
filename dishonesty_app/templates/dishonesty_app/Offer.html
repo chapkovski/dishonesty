@@ -6,13 +6,13 @@
 {% block content %}
 
     <p>
-        {{ participant.vars.allocation }} is the amount of allocation of shared endowment with
-        {{ Constants.players_per_group }} participants per group.
+        {{ participant.vars.allocation }} is the suggested amount of allocation of lab token with
+        your co-participant.
 
     </p>
     {% if subsession.is_real_effort_task_treatment %}
         <p> Your co-participant with whom you will share the endowment with, in the previous stage has earned
-            <strong> {{ 'income1' }} </strong> and were able to catch <strong> {{ 'catches1' }} </strong></p>
+            <strong> {{ 'income2' }} </strong> and were able to catch <strong> {{ 'catches2' }} </strong></p>
         <p> Meanwhile, Members of other groups have shown the following performance in the previous stage:
             average points earned {{'avgpoints'}} points; average number of balls catched {{'avgcatch'}}.'</p>
     {% endif %}
@@ -21,8 +21,7 @@
 
     <p>
 
-        You are <strong> The Sender </strong>. After you learn the random number that appear to you, Now please provide
-        the amount that you would like to allocate to your co-participant.
+        You are <strong> The Sender </strong>. Now please provide the amount that you would like to allocate to your co-participant.
         {% if subsession.is_bonus_treatment %}
             Remember that the receiver will receive additional {{ subsession.bonus }}  irrespective the allocated amount
             of endowment

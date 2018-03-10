@@ -15,7 +15,7 @@
 {# *** TITLE *** #}
 {# ****************************************************************************************************************** #}
 {% block title %}
-    {% trans "Instructions" %}
+    {% trans "The Box Collection Phase" %}
 {% endblock %}
 
 
@@ -33,15 +33,15 @@
         </p>
         <p>
             {% blocktrans trimmed with box_value=box_value|c time_interval=time_interval %}
-                As soon as you start the task by hitting the 'Start' button,
+                As soon as you start the task by hitting <strong>the 'Start'</strong> button,
                 one of the boxes is collected per second, starting from the top-left corner.
-                Once collected, the box marked by a tick symbol.
+            <strong> Once collected, the box marked by a tick symbol </strong>.
                 For each box collected you earn {{ box_value }}.
             {% endblocktrans %}
         </p>
         <p>
             {% blocktrans trimmed with box_value=box_value|c num_nobomb=num_nobomb %}
-                Behind one of the boxes hides a bomb that destroys everything that has been collected.
+            Behind one of the boxes hides a <strong>bomb</strong> that destroys everything that has been collected.
                 The remaining {{ num_nobomb }} boxes are worth {{ box_value }} each.
                 You do not know where the bomb is located.
                 You only know that the bomb can be in any place with equal probability.
@@ -49,7 +49,7 @@
         </p>
         <p>
             {% blocktrans trimmed %}
-                Your task is to choose when to stop the collecting process. You do so by hitting 'Stop' at any time.
+            <strong>Your task is to choose when to stop the collecting process</strong>. You do so by hitting 'Stop' at any time.
                 If you collect the box where the bomb is located, the bomb will explode and you will earn zero.
                 If you stop before collecting the bomb, you gain the amount accumulated that far.
             {% endblocktrans %}
@@ -58,6 +58,24 @@
             {% blocktrans trimmed %}
                 At the end of the task boxes are toggled by hitting the 'Solve' button.
                 A dollar sign or a fire symbol (for the bomb) will be shown on each of your collected boxes.
+            {% endblocktrans %}
+        </p>
+
+        <p>
+            {% blocktrans trimmed %}
+
+            <strong>Outline of play</strong> :
+            <strong>1. Click the Start Button </strong>
+            <strong>2. Once you decided to stop, click the Stop button </strong>
+            <strong>3. Click the Solve button </strong>
+            <strong>4. Click the Next button</strong>
+            {% endblocktrans %}
+        </p>
+
+        <p>
+            {% blocktrans trimmed %}
+               There are five rounds in the box collection phase. Our computer algorithm will randomly choose one round that is
+               going to be compensated and added to your payoff
             {% endblocktrans %}
         </p>
 
