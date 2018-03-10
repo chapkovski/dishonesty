@@ -30,7 +30,7 @@ class Constants(BaseConstants):
 
 
 class Subsession(BaseSubsession):
-    is_real_effort_task_treatment = models.BooleanField (doc='true if b part is real effort treatment')
+    is_real_effort_task_treatment = models.BooleanField(doc='true if b part is real effort treatment')
     is_bonus_treatment = models.BooleanField(doc='true if bonus part is in treatment')
     bonus_multiplier = models.FloatField(doc='the multiplier of bonus for a recipient. Is used in some treatments')
     bonus = models.CurrencyField(doc="""how large is the bonus that should be paid to recipient. For 
@@ -39,7 +39,8 @@ class Subsession(BaseSubsession):
                                  initial=0)
 
     def creating_session(self):
-        self.is_real_effort_task_treatment= True
+        self.is_real_effort_task_treatment = self.session.config.get('is_real_effort_task_treatment', False)
+        print('AAAA',self.session.config.__dict__)
         self.bonus = self.session.config.get('bonus', 0)
         self.is_bonus_treatment = True if self.bonus > 0 else False
         self.bonus_multiplier = self.session.config.get('bonus_multiplier', 1)
@@ -88,9 +89,9 @@ class Player(BasePlayer):
         return json.dumps(list(self.guesses.all().values('sender_choice', 'answer')))
 
     def role(self):
-        if self.participant.vars['color']=="red" :
+        if self.participant.vars['color'] == "red":
             return 'sender'
-        if self.participant.vars['color']=="blue":
+        if self.participant.vars['color'] == "blue":
             return 'receiver'
 
 

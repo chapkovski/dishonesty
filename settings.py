@@ -198,6 +198,7 @@ SESSION_CONFIGS = [
         'display_name': "dishonesty - real effort task results shown",
         'num_demo_participants': 2,
         'app_sequence': [
+            'ball_catch',
             'dishonesty_app',
         ],
         'is_real_effort_task_treatment': True,

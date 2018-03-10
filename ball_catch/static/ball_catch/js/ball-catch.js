@@ -6,7 +6,7 @@ var score = 0;
 var expense = 0;
 var catches = 0;
 var clicks = 0;
-var time = 61;
+var time = 11;
 
 $(document).ready(function(){
     $("#waterfall").fadeTo("slow", 0.33);
