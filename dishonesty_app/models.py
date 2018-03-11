@@ -40,7 +40,8 @@ class Subsession(BaseSubsession):
 
     def creating_session(self):
         self.is_real_effort_task_treatment = self.session.config.get('is_real_effort_task_treatment', False)
-        print('AAAA',self.session.config.__dict__)
+        if self.is_real_effort_task_treatment:
+            assert 'ball_catch' in self.session.config.get('app_sequence'), 'RET should be in apps for this treatment'
         self.bonus = self.session.config.get('bonus', 0)
         self.is_bonus_treatment = True if self.bonus > 0 else False
         self.bonus_multiplier = self.session.config.get('bonus_multiplier', 1)
