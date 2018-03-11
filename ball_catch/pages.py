@@ -29,12 +29,18 @@ class Task(WorkerPage):
 
     def before_next_page(self):
         self.player.set_payoff()
+        
+
+        
 
 
 class ResultsWaitPage(WaitPage):
     def after_all_players_arrive(self):
         # TODO: important! the following code may produce wrong results if we later switch to multi-round RET.
         # TODO: for one round version it's ok
+        # Understood. I think one round is enough for me now
+        # I also need to show the partner's (workers) productivity, in the sender page 
+        
         workers = [p for p in self.subsession.get_players() if p.role() == 'worker']
         total_catch = sum([p.catches for p in workers])
         avgcatch = round(total_catch / len(workers),1)
@@ -42,7 +48,8 @@ class ResultsWaitPage(WaitPage):
         total_income = sum([p.payoff for p in workers if p.payoff is not None])
         avgincome = round(total_income / len(workers),1)
         self.session.vars['avgpoints'] = avgincome
-
+        
+        
 
 class Results(WorkerPage):
     ...

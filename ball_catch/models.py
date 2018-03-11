@@ -32,6 +32,8 @@ class Subsession(BaseSubsession):
                 p.participant.vars['color'] = next(colors)
             players = self.get_players()
         # TODO: From Philipp: why do we need this random shuffling?
+        # Rizal : Mainly it was for assigning players into the role : currently idle and workers. Initially I was thinking to make group
+        # of group of this roles so I can count the average productivity, I don't think we need it anymore
 
         #     random.shuffle(players)
         #
@@ -63,6 +65,8 @@ class Subsession(BaseSubsession):
         #
         # else: self.group_like_round(1)
         # TODO: From Philipp: What's going on here? We don't need it anywhere later, right?
+        # No, I don't think we need it later
+
         if self.round_number == 1:
             for p in self.get_players():
                 my_prize_and_cost = Constants.prize_and_cost.copy()
@@ -77,6 +81,7 @@ class Subsession(BaseSubsession):
                 else:
                     p.prize = 20
                     p.cost = 5 * (p.condition - 2)
+    
 
 
 
@@ -99,18 +104,21 @@ class Player(BasePlayer):
     expense = models.IntegerField(doc="""cost of clicking""", initial=0)
     catches2=models.IntegerField(doc="""try to find out what is inside""", initial=0)
 
+    
     def role(self):
         if self.participant.vars['color']=="red" :
             return 'idle'
         if self.participant.vars['color']=="blue":
             return 'worker'
-
+        
 
     def set_payoff(self):
         self.payoff = self.score - self.expense
+        self.participant.vars['output2'] = self.catches
+        self.participant.vars['income2']=self.payoff
+        
 
-
-
+     
 
 
 

@@ -95,6 +95,15 @@ class Player(BasePlayer):
         if self.participant.vars['color'] == "blue":
             return 'receiver'
 
+    def get_partner_output(self):
+        partner = self.get_others_in_group()[0]
+        return partner.participant.vars['output2']
+
+    def get_partner_productivity(self):
+        partner = self.get_others_in_group()[0]
+        return partner.participant.vars['income2']
+
+
 
 class GuessChoice(djmodels.Model):
     sender_choice = models.IntegerField(doc='to show an option how much a Sender will send')
