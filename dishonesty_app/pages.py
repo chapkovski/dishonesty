@@ -9,11 +9,13 @@ class SenderPage(Page):
         return self.player.role() == 'sender'
 
 
-class AllocationInfo(SenderPage):
+# TODO: I temporarily make it visible to everybody for RET debugging purposes. switch back to
+# TODO: SenderPage class later
+class DGInstructions(Page):
     ...
 
 
-class DGInstructions(SenderPage):
+class AllocationInfo(SenderPage):
     ...
 
 

@@ -31,37 +31,38 @@ class Subsession(BaseSubsession):
             for p in self.get_players():
                 p.participant.vars['color'] = next(colors)
             players = self.get_players()
+        # TODO: From Philipp: why do we need this random shuffling?
 
-            random.shuffle(players)
-
-            blue_players = [p for p in players if p.participant.vars['color'] == 'blue']
-            red_players = [p for p in players if p.participant.vars['color'] == 'red']
-
-            # initializes matrix
-
-            group_matrix = []
-
-            # appends pairs of players from the blue treatment to the end of a matrix of groups.
-            while red_players:
-                red_group = [
-                    red_players.pop(),
-                    red_players.pop()
-                ]
-                group_matrix.append(red_group)
-
-            # appends pairs of players from the blue treatment to the end of a matrix of groups.
-            while blue_players:
-                blue_group = [
-                    blue_players.pop(),
-                    blue_players.pop()
-                ]
-                group_matrix.append(blue_group)
-
-            # commits the matrix as the new grouping for this round.
-            self.set_group_matrix(group_matrix)
-
-        else: self.group_like_round(1)
-
+        #     random.shuffle(players)
+        #
+        #     blue_players = [p for p in players if p.participant.vars['color'] == 'blue']
+        #     red_players = [p for p in players if p.participant.vars['color'] == 'red']
+        #
+        #     # initializes matrix
+        #
+        #     group_matrix = []
+        #
+        #     # appends pairs of players from the blue treatment to the end of a matrix of groups.
+        #     while red_players:
+        #         red_group = [
+        #             red_players.pop(),
+        #             red_players.pop()
+        #         ]
+        #         group_matrix.append(red_group)
+        #
+        #     # appends pairs of players from the blue treatment to the end of a matrix of groups.
+        #     while blue_players:
+        #         blue_group = [
+        #             blue_players.pop(),
+        #             blue_players.pop()
+        #         ]
+        #         group_matrix.append(blue_group)
+        #
+        #     # commits the matrix as the new grouping for this round.
+        #     self.set_group_matrix(group_matrix)
+        #
+        # else: self.group_like_round(1)
+        # TODO: From Philipp: What's going on here? We don't need it anywhere later, right?
         if self.round_number == 1:
             for p in self.get_players():
                 my_prize_and_cost = Constants.prize_and_cost.copy()
@@ -85,30 +86,6 @@ class Group(BaseGroup):
     avg = models.IntegerField(doc="""the total amount of catches""", initial=0)
     avgincome = models.IntegerField(doc="""the total amount of payoff""", initial=0)
     
-    def get_partner(self):
-         #p1=self.get_player_by_role('sender')
-         p2= self.get_player_by_role('receiver')
-         for p in self.get_players():
-                output = [p2.catches]
-                p.participant.vars['output2'] = output
-                print('@@@@output2:',p.participant.vars['output2'])
-    #    for p in self.get_player_by_role('sender'):
-     #       my_partner_income=
-     #       p.participant.vars['income2']= my_partner_income
-
-        #self.partner.ballcatch = self.partner.catches * 1
-        #self.participant.vars['income2'] = self.partner.payoff
-        #print('@@@@ income2:', self.participant.vars['income2'])
-        #self.participant.vars['catches3'] = self.partner.ballcatch
-        #print('@@@@ catches3:', self.participant.vars['catches3'])
-        #self.player.get_partner()
- 
-           
-        #  total_catch= sum(p.participant.vars['catches2'])
-           #    print('@@@@total is:', p.totalcatch)
-           #     p.average1=g.total_blue/group_num
-           #     p.average=round(p.average1,2)
-           #     p.session.vars['avg'] = p.average
 
 
 class Player(BasePlayer):
@@ -124,18 +101,18 @@ class Player(BasePlayer):
 
     def role(self):
         if self.participant.vars['color']=="red" :
-            return 'sender'
+            return 'idle'
         if self.participant.vars['color']=="blue":
-            return 'receiver'
+            return 'worker'
 
 
     def set_payoff(self):
         self.payoff = self.score - self.expense
-        self.ballcatch = self.catches*1
-        print('@@@@ ballcatch:', self.ballcatch)
-        self.participant.vars['income1'] = self.payoff
-        print('@@@@ income1:', self.participant.vars['income1'])
-        self.participant.vars['catches1']= self.ballcatch
+
+
+
+
+
 
 
 
