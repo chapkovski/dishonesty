@@ -171,7 +171,7 @@ SESSION_CONFIGS = [
         'display_name': "dishonesty - baseline",
         'num_demo_participants': 2,
         'app_sequence': [
-            'dishonesty_app',
+            'quiz','dishonesty_app',
         ],
         
     },

@@ -3,23 +3,36 @@
 
 {% block content %}
 
-<div class="instructions well well-lg">
-
     <h3 class="panel-sub-heading">
-         Activity Instructions
+         The Second Task : Practice Session
     </h3>
 
+
+
         <p>
+             You are about to start the second task, but first you will be introduced to the task in the practice session. We will ask
+             several questions to test your comprehension of this task, you have to be able to answer all these questions correctly before
+             you can advance to the actual task session.
+        </p>
 
-            Thank you for completing the <strong> trial of the second phase of this session </strong>, Please answer the following questions,
-            you may proceed to the actual second phase if you can answer all the questions correctly.
+        <p>
+            In the Second Task there are two participants are interacting in a pair, one participant is <strong>the sender</strong>
+            and the other participant is <strong>the receiver</strong>. Both the sender and the receiver share a fixed amount of lab token worth {{ Constants.endowment }}. <strong> The
+            Sender </strong> will decide how much <strong> the sender </strong>
+            will retain. Then the rest of the lab token will be transferred to <strong>the receiver</strong>.
+        </p>
 
+        {% include 'dishonesty_app/includes/allocation_table.html' %}
+
+        <p>
+            Prior to the sender making a decision, our algorithm  <strong>(that is only observed by the sender)</strong> <strong> will suggests the sender to allocate
+            certain points to the receiver </strong>. The sender might choose to follow or he/she may not follow our algorithm suggestion.
         </p>
 
         <p>
             please click the next button to proceed
         </p>
-        <br/>
+
         {% next_button %}
 
 

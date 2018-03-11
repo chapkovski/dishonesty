@@ -4,9 +4,17 @@ from ._builtin import Page, WaitPage
 from .models import Constants
 
 class Introduction(Page):
-    def is_displayed(self):
-        return self.round_number == 1
+      def is_displayed(self):
+          return self.round_number == 1
 
+      def vars_for_template(self):
+          intro_text = "quiz/Instructions.html"
+          a = list(Constants.kept_choices)
+          b = [i * 2 for i in a]
+          c = [int(Constants.endowment - i) for i in a]
+          return {
+              'introduction': intro_text,
+              'a': a, 'b': b, 'c': c,}
 class Question(Page):
     form_model = models.Player
     form_fields = ['submitted_answer']
@@ -19,6 +27,10 @@ class Question(Page):
             qd['choice3'],
             qd['choice4'],
         ]
+
+    def error_message(self, values):
+        if values ['submitted_answer']!= self.player.solution:
+            return 'That is the incorrect answer. Try Again'
 
     def before_next_page(self):
         self.player.check_correct()

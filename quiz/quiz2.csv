@@ -1,5 +1,0 @@
-id,question,choice1,choice2,choice3,choice4,solution
-1,You are the receiver, if the shared initial income is 40 and your partner retains 20 how much will you earn?,10,20,30,40,20
-2,You are the receiver, If the shared initial income is 40 and your partner retains 40 how much will you earn?,0,10,20,30,20
-3,You are the receiver, your partner allocated 20 and you guess 20, how much will you get  ?0,20,10,80,100,10
-4,You are the receiver, your partner allocated 20 and you guess 10, how much will you get? 0,10,20,30,40,0
