@@ -30,42 +30,7 @@ class Subsession(BaseSubsession):
         if self.round_number == 1:
             for p in self.get_players():
                 p.participant.vars['color'] = next(colors)
-            players = self.get_players()
-        # TODO: From Philipp: why do we need this random shuffling?
-        # Rizal : Mainly it was for assigning players into the role : currently idle and workers. Initially I was thinking to make group
-        # of group of this roles so I can count the average productivity, I don't think we need it anymore
 
-        #     random.shuffle(players)
-        #
-        #     blue_players = [p for p in players if p.participant.vars['color'] == 'blue']
-        #     red_players = [p for p in players if p.participant.vars['color'] == 'red']
-        #
-        #     # initializes matrix
-        #
-        #     group_matrix = []
-        #
-        #     # appends pairs of players from the blue treatment to the end of a matrix of groups.
-        #     while red_players:
-        #         red_group = [
-        #             red_players.pop(),
-        #             red_players.pop()
-        #         ]
-        #         group_matrix.append(red_group)
-        #
-        #     # appends pairs of players from the blue treatment to the end of a matrix of groups.
-        #     while blue_players:
-        #         blue_group = [
-        #             blue_players.pop(),
-        #             blue_players.pop()
-        #         ]
-        #         group_matrix.append(blue_group)
-        #
-        #     # commits the matrix as the new grouping for this round.
-        #     self.set_group_matrix(group_matrix)
-        #
-        # else: self.group_like_round(1)
-        # TODO: From Philipp: What's going on here? We don't need it anywhere later, right?
-        # No, I don't think we need it later
 
         if self.round_number == 1:
             for p in self.get_players():

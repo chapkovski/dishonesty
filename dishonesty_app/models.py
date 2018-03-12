@@ -90,10 +90,17 @@ class Player(BasePlayer):
         return json.dumps(list(self.guesses.all().values('sender_choice', 'answer')))
 
     def role(self):
-        if self.participant.vars['color'] == "red":
-            return 'sender'
-        if self.participant.vars['color'] == "blue":
-            return 'receiver'
+        # TODO: the following try except ONLY for debugging. later on we should take it out
+        try:
+            if self.participant.vars['color'] == "red":
+                return 'sender'
+            if self.participant.vars['color'] == "blue":
+                return 'receiver'
+        except KeyError:
+            if self.id_in_group % 2 == 0:
+                return 'sender'
+            else:
+                return 'receiver'
 
     def get_partner_output(self):
         partner = self.get_others_in_group()[0]
@@ -102,7 +109,6 @@ class Player(BasePlayer):
     def get_partner_productivity(self):
         partner = self.get_others_in_group()[0]
         return partner.participant.vars['income2']
-
 
 
 class GuessChoice(djmodels.Model):
