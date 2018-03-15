@@ -6,14 +6,14 @@
 {% endblock %}
 
 {% block styles %}
-    <link rel="stylesheet" href="{% static "ball_catch/css/style.css" %}" />
+    <link rel="stylesheet" href="{% static "ball_catch/css/style.css" %}"/>
 {% endblock %}
 
 {% block scripts %}
     <script src="{% static "ball_catch/js/jquery-1.11.0.min.js" %}"></script>
     <script src="{% static "ball_catch/js/jquery-ui.min.js" %}"></script>
     <script src="{% static "ball_catch/js/ball-catch.js" %}"></script>
-
+    <script src="{% static 'otree/js/jquery.countdown.min.js' %}"></script>
     <script>
         var prize = {{ player.prize }};
         var cost = {{ player.cost }};
@@ -22,24 +22,25 @@
 {% endblock %}
 
 {% block content %}
+    {% include 'includes/js-work-page.html' %}
     <div id="wrapper">
         <div id="jballfall">
             <div class="statstext" id="gamestats">
                 <div id="gamestatsleft">
                     <div>
-                        Catches: <span id="catchesstats" class="statsnumber">0</span>
+                        Catches: <span id="catchesstats" class="statsnumber">{{ player.catches }}</span>
                     </div>
 
                     <div>
-                        Score: <span id="scorestats" class="statsnumber">0</span>
+                        Score: <span id="scorestats" class="statsnumber">{{ player.score }}</span>
                     </div>
                 </div>
                 <div id="gamestatsright">
                     <div>
-                        Clicks: <span id="clicksstats" class="statsnumber">0</span>
+                        Clicks: <span id="clicksstats" class="statsnumber">{{ player.clicks }}</span>
                     </div>
                     <div>
-                        Expense: <span id="expensestats" class="statsnumber">0</span>
+                        Expense: <span id="expensestats" class="statsnumber">{{ player.expense }}</span>
                     </div>
                 </div>
             </div>
@@ -65,18 +66,22 @@
                     <button type="button" id="right" class="button" style="width:120px">RIGHT</button>
                 </div>
             </div>
+
             <div id="periodcontroller">
                 <div>
-                    <button type="button" id="startbutton" class="button" style="width:150px">Start the Task!</button>
+                    {% if not player.work_timer %}
+                        <button type="button" id="startbutton" class="button" style="width:150px">Start the Task!
+                        </button>
+                    {% endif %}
                 </div>
             </div>
         </div>
-        <br class="break" />
+        <br class="break"/>
         <div id="container" align=center>
-            <input type="hidden" name="catches" id="catches" value="0" />
-            <input type="hidden" name="clicks" id="clicks" value="0" />
-            <input type="hidden" name="score" id="score" value="0" />
-            <input type="hidden" name="expense" id="expense" value="0" />
+            <input type="hidden" name="catches" id="catches" value="0"/>
+            <input type="hidden" name="clicks" id="clicks" value="0"/>
+            <input type="hidden" name="score" id="score" value="0"/>
+            <input type="hidden" name="expense" id="expense" value="0"/>
         </div>
     </div>
 

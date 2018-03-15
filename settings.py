@@ -7,7 +7,7 @@ import otree.settings
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
-
+CHANNEL_ROUTING = 'ball_catch.ret_channel.routing.channel_routing'
 STATIC_ROOT = os.path.join(PROJECT_ROOT, 'staticfiles')
 STATIC_URL = '/static/'
 STATIC_DIRS = (
@@ -152,7 +152,8 @@ SESSION_CONFIGS = [
         'name': 'BRET_Dshnst',
         'display_name': "dishonesty - BRET",
         'num_demo_participants': 4,
-        'app_sequence': ['ball_catch',
+        'app_sequence': [
+            'ball_catch',
                          'dishonesty_app',
                          'bret_ori',
                          ],
@@ -161,19 +162,20 @@ SESSION_CONFIGS = [
         'name': 'RET_Dshnst',
         'display_name': "dishonesty Real Effort - RET",
         'num_demo_participants': 4,
-        'app_sequence': ['ball_catch',
-            'dishonesty_app',
-        ],
+        'app_sequence': [
+            'ball_catch',
+            #              'dishonesty_app',
+                         ],
         'is_real_effort_task_treatment': True,
     },
-        {
+    {
         'name': 'dg_baseline',
         'display_name': "dishonesty - baseline",
         'num_demo_participants': 2,
         'app_sequence': [
-            'quiz','dishonesty_app',
+            'quiz', 'dishonesty_app',
         ],
-        
+
     },
     {
         'name': 'dg_bonus',

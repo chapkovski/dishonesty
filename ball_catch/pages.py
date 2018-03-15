@@ -75,9 +75,9 @@ class Roundhistory(WorkerPage):
 
 
 page_sequence = [
-    Introduction,
+    # Introduction,
     Task,
-    ResultsWaitPage,
-    Results,
-    Roundhistory
+    # ResultsWaitPage,
+    # Results,
+    # Roundhistory
 ]

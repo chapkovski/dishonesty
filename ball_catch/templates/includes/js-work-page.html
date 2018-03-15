@@ -1,0 +1,267 @@
+{% load staticfiles otree_tags %}
+
+
+<script>
+    $(function () {
+
+        var ws_scheme = window.location.protocol == "https:" ? "wss" : "ws";
+        var ws_path = ws_scheme + '://' + window.location.host + "/tasktracker/participant/{{ participant.code }}/player/{{ player.pk}}";
+        var socket = new ReconnectingWebSocket(ws_path);
+
+        // Handle any errors that occur.
+        socket.onerror = function (error) {
+            console.log('WebSocket Error: ' + error);
+        };
+        // Show a connected message when the WebSocket is opened.
+        socket.onopen = function (event) {
+            console.log('connected to oTree');
+        };
+        // Handle messages sent by the server.
+        socket.onmessage = function (event) {
+            var obj = jQuery.parseJSON(event.data);
+            console.log(obj);
+            if (obj.game_start) {
+                {#                timer();#}
+                startNewGame();
+            }
+            let received_milliseconds = parseInt(obj.milleseconds);
+            console.log(received_milliseconds);
+            $('p#clock').countdown(received_milliseconds)
+                .on('update.countdown', function (event) {
+                    var format = '%-N:%S';
+                    $(this).html(event.strftime(format));
+                }).on('finish.countdown', function (event) {
+                time = 0;
+                $("#clickleft").off();
+                $("#clickright").off();
+                msg = {
+                    'game_over': true,
+                    'catches': catches,
+                    'clicks': clicks,
+                    'score': score,
+                    'expense': expense
+                }
+                ;
+
+                if (socket.readyState === WebSocket.OPEN) {
+                    console.log('sending scores');
+                    socket.send(JSON.stringify(msg));
+                }
+            });
+
+
+        }
+        ;
+        socket.onclose = function (event) {
+            console.log('disconnected from oTree');
+        };
+        $("button#startbutton").on("click", function () {
+            let now = new Date();
+            let now_utc = new Date(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate(), now.getUTCHours(), now.getUTCMinutes(), now.getUTCSeconds());
+            js_timestamp = now_utc.getTime();
+
+            msg = {'start_date': js_timestamp};
+            console.log(msg);
+            if (socket.readyState === WebSocket.OPEN) {
+                socket.send(JSON.stringify(msg));
+            }
+
+        });
+
+
+    });
+</script>
+
+<script>
+    var trayID;
+    var interval = 41; //the lower the value, the quicker ball falls.
+    var ballDelay = 1071; //the lower the value, the more balls.
+    var nCol = 4;
+    var score = 0;
+    var expense = 0;
+    var catches = 0;
+    var clicks = 0;
+    var time = {{Constants.ret_timer}};
+
+    $(document).ready(function () {
+        $("#waterfall").fadeTo("slow", 0.33);
+{#        $("#startbutton").click(function () {#}
+{##}
+{#            startNewGame();#}
+{#        });#}
+    });
+
+    /**
+     * Main function to start the game.
+     */
+    function startNewGame() {
+        $("#waterfall").fadeTo("slow", 1);
+        $(".stats").fadeIn();
+        $("#startbutton").hide();
+
+        createballs();
+        createtray();
+        updateStats();
+
+        $("#prize").html(prize);
+        $("#cost").html(cost);
+
+        /*
+         $(document).keydown(function(e) {
+         if(e.keyCode == 37) {
+         leftArrow();
+         } else if(e.keyCode == 39) {
+         rightArrow();
+         }
+         });
+         */
+        $("#clickleft").click(function () {
+            leftArrow();
+        })
+        $("#clickright").click(function () {
+            rightArrow();
+        })
+    }
+
+    /**
+     * Created a single ball.
+     */
+    function createball() {
+        var newball = document.createElement("div");
+        $(newball).attr("class", "fallingball");
+        $(newball).css("position", "absolute");
+        var tempId = "ball" + Math.floor(Math.random() * 30003);
+        $(newball).attr("id", tempId);
+        var leftMargin = (Math.floor(Math.random() * nCol)) / nCol;
+        leftMargin *= ($("#waterfall").width() - 60);
+        $(newball).css("margin-left", leftMargin + 73 + "px");
+        $(newball).appendTo("#waterfall");
+        ballFall(tempId);
+    }
+
+    /**
+     * Created a flow of balls.
+     */
+
+    function createballs() {
+        var control = setInterval(function () {
+            if (time == 0) {
+                clearInterval(control);
+            }
+            createball();
+        }, ballDelay);
+    }
+
+    /**
+     * Animates a ball falling and checks whether the ball was caught
+     */
+    function ballFall(id) {
+        var ball = $("#" + id);
+
+        var fall = setInterval(function () {
+            var topMargin = ball.css("margin-top");
+            topMargin = parseInt(topMargin);
+            if (topMargin < $("#waterfall").height() - ball.height()) {
+                topMargin += 5;
+                ball.css("margin-top", topMargin + 'px');
+            }
+            else {
+                ball.effect('puff');
+                clearInterval(fall);
+            }
+        }, interval);
+
+        /**
+         * * Called when a ball was caught.
+         * * Score goes up .
+         * */
+        var caught = setInterval(function () {
+            if (parseInt(ball.css("margin-top")) < parseInt($(".tray").css("margin-top"))
+                && parseInt(ball.css("margin-top")) > parseInt($(".tray").css("margin-top")) - 40
+                && parseInt(ball.css("margin-left")) == parseInt($(".tray").css("margin-left")) + 13) {
+                score += prize;
+                catches += 1;
+
+                ball.effect('explode');
+                clearInterval(fall);
+                clearInterval(caught);
+
+                updateStats();
+            }
+            else if (time == 0) {
+                clearInterval(fall);
+                clearInterval(caught);
+            }
+        }, interval);
+    }
+
+    function createtray() {
+        var tray = document.createElement("div");
+        $(tray).attr("class", "tray");
+        $(tray).css("position", "absolute");
+        trayID = "tray0";
+        $(tray).attr("id", trayID);
+        $(tray).css("margin-left", 60 + "px");
+        var topMargin = $("#waterfall").height() - 30;
+        $(tray).css("margin-top", topMargin + "px");
+        $(tray).appendTo("#waterfall");
+    }
+
+    function leftArrow() {
+        var leftMargin = $("#" + trayID).css("margin-left");
+        leftMargin = parseFloat(leftMargin);
+        var step = ($("#waterfall").width() - 60) / nCol;
+        if (leftMargin > step) {
+            leftMargin -= step;
+            expense += cost;
+            clicks += 1;
+        }
+        $("#" + trayID).css("margin-left", leftMargin + "px");
+        updateStats();
+    }
+
+
+    function rightArrow() {
+        var leftMargin = $("#" + trayID).css("margin-left");
+        leftMargin = parseFloat(leftMargin);
+        var step = ($("#waterfall").width() - 60) / nCol;
+        if (leftMargin < step * (nCol - 1) + 30) {
+            leftMargin += step;
+            expense += cost;
+            clicks += 1;
+        }
+        $("#" + trayID).css("margin-left", leftMargin + "px");
+        updateStats();
+    }
+
+    /**
+     * * Needed to update all the current stats.
+     * */
+    function updateStats() {
+        $("#scorestats").html(score);
+        $("#expensestats").html(expense);
+        $("#catchesstats").html(catches);
+        $("#clicksstats").html(clicks);
+
+        $('input#catches').val(catches);
+        $('input#clicks').val(clicks);
+        $('input#score').val(score);
+        $('input#expense').val(expense);
+    }
+
+    {#    function timer() {#}
+    {#        function pad(val) {#}
+    {#            return val > 9 ? val : "0" + val;#}
+    {#        }#}
+    {##}
+    {#        var x = setInterval(function () {#}
+    {#            $("#clock").html(Math.floor(--time / 60) + ":" + pad(time % 60));#}
+    {#            if (time == 0) {#}
+    {#                clearInterval(x);#}
+    {#                updateStats();#}
+    {#            }#}
+    {#        }, 1000);#}
+    {##}
+    {#        updateStats();#}
+    {#    }#}
+</script>
